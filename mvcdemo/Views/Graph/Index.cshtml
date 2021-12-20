@@ -1,0 +1,48 @@
+﻿<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<div id="container" style="min-width: 310px; max-width: 400px; height: 400px; margin: 0 auto"></div>
+<script>Highcharts.chart('container', {
+
+        chart: {
+            polar: true
+        },
+
+        title: {
+            text: 'Highcharts Polar Chart'
+        },
+
+        subtitle: {
+            text: 'Also known as Radar Chart'
+        },
+
+        pane: {
+            startAngle: 0,
+            endAngle: 360
+        },
+
+        xAxis: {
+            categories: ['CREATE', 'lOOK SHAPING YOUR PERSONALITY', 'HUNGER OF EXCELLENCE', 'SEEDING', 'PATH FINDER', 'HARSHALI MAM']
+        },
+
+        yAxis: {
+            min: 0
+        },
+
+        series: [{
+            type: 'column',
+            name: 'Column',
+            data: [8, 7, 6, 5, 4, 5,10],
+            pointPlacement: 'between'
+        }, {
+            type: 'line',
+            name: 'Line',
+            data: [8, 7, 6, 5, 4, 5,10]
+        }, {
+            type: 'area',
+            name: 'Area',
+            data: [8, 7, 6, 5, 4, 5,10]
+        }]
+    });</script>

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "searchopration";
+}
+<script src="~/Content/Pages/jquery-1.11.1.min.js"></script>
+<script src="~/Content/Pages/mvcdemo.js"></script>
+<h2>searchopration</h2>
+
+<h1 lang="mr">
+    <input type="text" id="txtAccountName" name="Criteria" class="control-group pull-left" style="border:1px solid #E1E1DD" onclick=record() placeholder="Speak Something" />
+    <input type="text" id="txtother" name="Criteria" class="control-group pull-left" style="border:1px solid #E1E1DD" onclick=record1() placeholder="Speak Something" />
+</h1>
+<button id="btnSearch" onclick="getMainRegistrationList()"> Search</button>
+
+<table id="tbl_mvcdemo" class="container" border="1">
+    <thead>
+    <th>NAME</th>
+    <th>EMAIL</th>
+    <th>MOBILE_NO</th>
+
+
+
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+    function record() {
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "mr";
+
+        recognition.onresult = function (event) {
+            // console.log(event);
+            document.getElementById('txtAccountName').value = event.results[0][0].transcript;
+        }
+
+        recognition.start();
+
+    }
+</script>
+<script>
+    function record1() {
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "mr";
+
+        recognition.onresult = function (event) {
+            // console.log(event);
+            document.getElementById('txtother').value = event.results[0][0].transcript;
+        }
+
+        recognition.start();
+
+    }
+</script>

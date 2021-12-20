@@ -1,0 +1,40 @@
+﻿<!-- Input area -->
+<label for="Speech Recognition">Speech Recognition</label>
+<input type="text" id="speechToText" placeholder="Speak Something" onclick="record()">
+
+<!-- Below is the script for voice recognition and conversion to text-->
+<script>
+        function record() {
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = "mr";
+
+            recognition.onresult = function (event) {
+                console.log(event);
+                document.getElementById('speechToText').value = event.results[0][0].transcript;
+            }
+            recognition.start();
+
+        }
+    </script>
+<script src="~/Content/Pages/annyang.min.js"></script>
+<script>
+    if (annyang) {
+       
+        var commands = {
+            'type *tag': function (variable)
+            {
+                let speechToText = document.getElementById("speechToText");
+                speechToText.value = variable;
+
+            }
+                        }
+        };
+
+        
+        annyang.addCommands(commands);
+
+       
+        annyang.start();
+    }
+</script>
+

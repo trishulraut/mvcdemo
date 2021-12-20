@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    
+</head>
+<body>
+ 
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <div id="container" style="min-width: 800px; max-width: 1000px; height: 1000px;  margin: 0 auto"></div>
+
+
+
+    <script type="text/javascript">
+        $(function () {/*from   w  w w  . j a  va2  s.c o  m*/
+            $('#container').highcharts({
+                chart: {
+                    polar: true,
+                    type: 'area'
+                },
+                title: {
+                    text: 'Examer Name',
+                    x: 0,
+                 
+                },
+                pane: {
+                    size: '90%'
+                },
+                xAxis: {
+                    categories: ['Vision For The Future', 'Look/Attire', 'Body Structure-Weight Height Baldness', 'Physical Challenges', 'Out Of Box Thinking', 'Social Acceptance/Invalidation', 'Thurst to Take One More Steps', 'Adaptability', 'Taking Responsibility', 'People Relationship/Connections', 'Magnifying Impact', 'Knowing Your Way', 'Platform Creation For Knowleadge Gain', 'Creating Your Own Resource', 'Drive For Successfully Delivery', 'Self Awareness', 'Daring With Honesty', 'Inspring', 'Clarity Of The Target', 'Goal Oriented Preparation'],
+                    tickmarkPlacement: 'on',
+                    lineWidth: 0
+                },
+                yAxis: {
+                    gridLineInterpolation: 'circle',
+                    color:'Black',
+                    lineWidth: 0,
+                    tickInterval: 1,
+                },
+                tooltip: {
+                    shared: true,
+                    pointFormat: '<span style="color:Black">{series.name}: <b>{point.y:,.0f}</b><br/>'
+/*                        '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'*/
+                },
+                credits: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: true
+                },
+                legend: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Planning',
+                    type: 'area',
+                    color: {
+                        radialGradient: {
+                            cx: 0.60,
+                            cy: 0.51,
+                            r: 0.4
+                        },
+                        stops: [
+                            [0.10, '#ff0000'],
+                            [0.55, '#ff8000'],
+                            [0.90, '#feff00'],
+                            [1, '#3eff00']
+                        ]
+                    },
+                     data: [1.5, 2, 3, 1, 2, 1, 1, 2, 3, 1, 2, 1, 1, 2, 3, 1, 2, 1, 2, 3],
+                    pointPlacement: 'on'
+                }]
+            });
+        });
+
+    </script>
+
+
+</body>
+</html>

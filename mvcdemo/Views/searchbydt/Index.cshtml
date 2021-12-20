@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <div>
+        <input id="txtname" type="text" />
+        <input id="txtmobile" type="text" />
+        <select id="demo" multiple="multiple">
+
+            <option value="nagpur">nagpur</option>
+
+            <option value="nagbhir">nagbhir</option>
+
+            <option value="chandrapur">chandrapur</option>
+
+            <option value="akola">akola</option>
+
+            <option value="wardha">wardha</option>
+
+            <option value="bhandara">bhandara</option>
+
+        </select>
+     
+
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#tbl_forsearch").DataTable();
+        });
+    </script>
+</body>
+</html>

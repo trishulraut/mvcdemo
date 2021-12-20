@@ -1,0 +1,112 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.js"></script>
+    <style id="compiled-css" type="text/css">
+
+        #container, #canvas {
+            //from w w w . j ava 2s. c o m max-width: 800px;
+            max-height: 400px;
+            margin: 1em auto;
+        }
+    </style>
+    <script type="text/javascript">
+$(function () {
+    var chart = new Highcharts.Chart({
+        chart: {
+            polar: true,
+            renderTo: 'container',
+            events: {
+                load: modelMe
+            }
+        },
+        title: {
+            text: 'Uplift Incubator Zone'
+        },
+        pane: {
+            startAngle: 0,
+            endAngle: 360,
+            color: '#ccc'
+        },
+        xAxis: {
+            categories: ['vision for the future', 'look/attire', 'Body structure', 'physical challenge', 'social acceptance', 'adaptability', 'taking responsibility', 'creating your own resource', 'drive for successfully delivery', 'self awareness', 'inspring', 'clarity of the target', 'goal oriented preparation']
+        },
+        yAxis: {
+            min: 0,
+            max: 9
+        },
+        series: [
+        {
+           name: 'Planning',
+        //    type: 'area',
+        //    color: {
+        //        radialGradient: {
+        //            cx: 0.25,
+        //            cy: 0.4,
+        //            r: 0.5
+        //        },
+        //        stops: [
+        //            [0.25, '#ff0000'],
+        //            [0.5, '#ff8000'],
+        //            [0.75, '#feff00'],
+        //            [1, '#3eff00']
+        //        ]
+        //    },
+            data: [1, 2, 3, 1, 2, 6, 2, 3, 2, 1, 1, 6],
+            pointPlacement: 'on'
+        }, {
+                type: 'line',
+            name: 'Line',
+                color:'black',
+            data: [1, 2, 3, 1, 2, 6, 2, 3, 2, 1, 1, 6]
+            }]
+    });
+    function modelMe() {
+            var chart = this;
+        //var colors = ["orange", "red", "green", "blue", "#b27cec"];
+
+            var parts = 5;
+            for(var i = 0; i < parts; i++) {
+                chart.renderer.arc(chart.plotLeft + chart.yAxis[0].center[0],
+                                   chart.plotTop + chart.yAxis[0].center[1],
+                                   chart.yAxis[0].height,
+                                   0,
+                                    -Math.PI + (Math.PI/(parts/2) * i),
+                                  -Math.PI + (Math.PI/(parts/2) * (i+1))).attr({
+                    fill: colors[i % colors.length],
+                    'stroke-width': 2,
+                    'opacity': 0.8
+                }).add();
+            }
+    }
+    var svg = chart.getSVG();
+    var render_width = 600;
+    var render_height = 400;
+    var canvas = document.getElementById('canvas');
+    canvas.height = render_height;
+    canvas.width = render_width;
+    var image = new Image;
+    image.onload = function() {
+        canvas.getContext('2d').drawImage(this, 0, 0, render_width, render_height);
+    };
+   
+    image.src = 'data:image/svg+xml;base64,' + window.btoa(svg);
+});
+
+    </script>
+</head>
+<body>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <div id="container"></div>
+    <canvas id="canvas" width="600px" height="400px"></canvas>
+</body>
+</html>

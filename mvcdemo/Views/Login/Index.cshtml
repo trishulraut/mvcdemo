@@ -1,0 +1,43 @@
+﻿@using mvcdemo.Models;
+@model loginModel
+@{ Layout = null; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    
+  
+    
+</head>
+<body>
+
+  
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @if (@ViewBag.Message != null)
+    {
+<div class="form-group">
+    @ViewBag.Message
+</div>}
+
+
+
+    @using (Html.BeginForm("LoginIn", "Login", FormMethod.Post))
+    {
+
+
+@Html.LabelFor(a => a.UserName)
+   @Html.TextBoxFor(a => a.UserName, new { @class = "form-control" })
+
+ @Html.ValidationMessageFor(a => a.UserName)
+
+
+  @Html.LabelFor(a => a.Password)
+   @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+               <input type="submit" value="Login" class="btn btn-info" />
+                                                                                }
+
+</body>
+</html>
+

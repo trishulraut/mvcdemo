@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Content/Pages/jquery-1.11.1.min.js"></script>
+<script src="~/Content/Pages/validation.js"></script>
+<h2>VALIDATION</h2>
+<br />
+
+    @*<label id="lblvid"></label>*@
+    <input type="text" id="lblvid" />
+    <br />
+    <label>NAME</label>
+    <br />
+    <input type="text" id="txtname" />
+    <br />
+    <label>AGE</label>
+    <br />
+    <input type="text" id="txtage" />
+    <br />
+    <label>MOBILE NO</label>
+    <br />
+    <input type="text" id="txtmob" />
+    <br />
+    <label>EMAIL ID</label>
+    <br />
+    <input type="text" id="txtemail" />
+
+    <input type="button" id="btnsubmit" value="submit" onclick="savevalidation()" />
+    <input type="button" id="btnclear" class="btn-lg btn-danger" value="clear" onclick="ClearData()" />
+    <button type="button" id="printButton" class="btn btn-danger" onclick="printDiv('didID')">Print Invoice</button>
+    <div id="didID">
+
+        <table id="tbl_validater" border="1">
+            <thead>
+            <th>N_ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>EMAIL</th>
+            <th>MOBILE_NO</th>
+            <th></th>
+
+
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+<script language="javascript" type="text/javascript">
+    function printDiv(didID) {
+
+        var divElements = document.getElementById(didID).innerHTML;
+        //Get the HTML of whole page
+        var oldPage = document.body.innerHTML;
+
+        //Reset the page's HTML with div's HTML only
+        document.body.innerHTML =
+            "<html><head><title></title></head><body>" +
+            divElements + "</body>";
+        window.print();
+        recognition.onresult = function (event) {
+            console.log(event);
+            document.getElementById('printButton').value = event.results[0][0].transcript;
+        }
+        recognition.start();
+
+        document.body.innerHTML = oldPage;
+    }
+</script>

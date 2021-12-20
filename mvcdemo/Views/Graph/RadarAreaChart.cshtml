@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RadarAreaChart</title>
+    
+
+    <link href="~/Content/piechar/jquery.jqChart.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/piechar/jquery-ui-1.8.21.css" />
+    
+    <script src="~/Content/piechar/jquery.jqChart.min.js"></script>
+    <script src="~/Content/Pages/jquery-1.11.1.min.js"></script>
+
+</head>
+<body>
+    <div>
+
+
+        <asp:Chart runat=server><Series><asp:Series Name="Series1"></asp:Series></Series><ChartAreas><asp:ChartArea Name="ChartArea1"></asp:ChartArea></ChartAreas></asp:Chart>
+       </div>
+
+
+   
+</body>
+</html>
