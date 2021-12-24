@@ -31,6 +31,6 @@ namespace mvcdemo.Data
         public virtual DbSet<tbl_forsearch> tbl_forsearch { get; set; }
         public virtual DbSet<ChartData> ChartDatas { get; set; }
 
-        public System.Data.Entity.DbSet<mvcdemo.Models.mvcdemoModel> mvcdemoModels { get; set; }
+    
     }
 }

@@ -15,7 +15,11 @@ namespace mvcdemo.Controllers
         {
             return View();
         }
-     
+
+        public ActionResult search()
+        {
+            return View();
+        }
 
         public ActionResult searchopration()
         {
