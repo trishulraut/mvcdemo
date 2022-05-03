@@ -7,7 +7,6 @@
         //enableFiltering: true,
         enableFullValueFiltering: true,
 
-
     });
    
 });
