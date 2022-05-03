@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using mvcdemo.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace mvcdemo.Models
 {
@@ -12,8 +13,10 @@ namespace mvcdemo.Models
 
         public int N_ID { get; set; }
         public string NAME { get; set; }
+        
         public string AGE { get; set; }
         public string MOBILE { get; set; }
+ 
         public string EMAIL { get; set; }
 
         public string Savevalidation(validationModel model)

@@ -6,20 +6,23 @@ using mvcdemo.Data;
 using System.Data;
 using System.Data.Common;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace mvcdemo.Models
 {
-    public class mvcdemoModel
+    public class MVCdemoModel
     {
 
 
         public int ID { get; set; }
         public string NAME { get; set; }
+      
         public string MOBILE_NO { get; set; }
+     
         public string EMAIL { get; set; }
 
-        public string Savemvcdemo(mvcdemoModel model)
+        public string Savemvcdemo(MVCdemoModel model)
         {
             string Message = "";
             mvcdemoEntities db = new mvcdemoEntities();
@@ -53,16 +56,16 @@ namespace mvcdemo.Models
             return Message;
         }
 
-        public List<mvcdemoModel> GetMvcdemos()
+        public List<MVCdemoModel> GetMvcdemos()
         {
             mvcdemoEntities db = new mvcdemoEntities();
-            List<mvcdemoModel> lstCategory = new List<mvcdemoModel>();
+            List<MVCdemoModel> lstCategory = new List<MVCdemoModel>();
             var mvcdemosd = db.tbl_mvcdemo.ToList();
             if (mvcdemosd != null)
             {
                 foreach (var Category in mvcdemosd)
                 {
-                    lstCategory.Add(new mvcdemoModel()
+                    lstCategory.Add(new MVCdemoModel()
                     {
                         ID = Category.ID,
                         NAME = Category.NAME,
@@ -89,10 +92,10 @@ namespace mvcdemo.Models
             return Message;
         }
 
-        public mvcdemoModel EditData(int Id)
+        public MVCdemoModel EditData(int Id)
         {
             string Message = "";
-            mvcdemoModel model = new mvcdemoModel();
+            MVCdemoModel model = new MVCdemoModel();
             mvcdemoEntities Db = new mvcdemoEntities();
             var editData = Db.tbl_mvcdemo.Where(p => p.ID == Id).FirstOrDefault();
             if (editData != null)
@@ -110,11 +113,11 @@ namespace mvcdemo.Models
 
 
 
-        public List<mvcdemoModel> SearchCustomer(string Prefix)
+        public List<MVCdemoModel> SearchCustomer(string Prefix)
         {
             try
             {
-                List<mvcdemoModel> model = new List<mvcdemoModel>();
+                List<MVCdemoModel> model = new List<MVCdemoModel>();
                 mvcdemoEntities db = new mvcdemoEntities();
                 DataTable dtTable = new DataTable();
                 using (var cmd = db.Database.Connection.CreateCommand())
@@ -137,7 +140,7 @@ namespace mvcdemo.Models
 
                         foreach (DataRow dr in dtTable.Rows)
                         {                         
-                            model.Add(new mvcdemoModel()
+                            model.Add(new MVCdemoModel()
                             {
                                 ID = Convert.ToInt32(dr["ID"].ToString()),
                                 NAME = dr["NAME"].ToString(),
@@ -164,16 +167,16 @@ namespace mvcdemo.Models
         }
 
 
-        public List<mvcdemoModel> GetRegistrationList(string NAME)
+        public List<MVCdemoModel> GetRegistrationList(string NAME)
         {
             mvcdemoEntities db = new mvcdemoEntities();
-            List<mvcdemoModel> str = new List<mvcdemoModel>();
+            List<MVCdemoModel> str = new List<MVCdemoModel>();
             var RegistrationList = db.tbl_mvcdemo.Where(p => p.NAME == NAME).ToList();
             if (RegistrationList != null)
             {
                 foreach (var reg in RegistrationList)
                 {
-                    str.Add(new mvcdemoModel()
+                    str.Add(new MVCdemoModel()
                     {
                         ID = reg.ID,
                         NAME = reg.NAME,

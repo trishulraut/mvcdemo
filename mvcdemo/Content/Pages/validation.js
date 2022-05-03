@@ -1,8 +1,18 @@
 ﻿$(document).ready(function () {
     //alert("Category added Sucessfully");
     getMainCategoryList();
+    //$('#demo').multiselect();
+    $('#demo').multiselect({
+        selectAllValue: 'multiselect-all',
+        //enableFiltering: true,
+        enableFullValueFiltering: true,
 
+
+    });
+   
 });
+
+
 var savevalidation = function () {
     var NAME = $("#txtname").val();
     var AGE = $("#txtage").val();
@@ -22,8 +32,13 @@ var savevalidation = function () {
         datatype: "json",
 
         success: function (response) {
-            alert(response.Message);
-            getMainCategoryList();
+            $.alert({
+                title: 'alert',
+                content: "DONE",
+                type: "blue"
+            });
+            //alert(response.Message);
+            //getMainCategoryList();
         }
       
     });
@@ -41,7 +56,7 @@ var getMainCategoryList = function () {
             var html = "";
             $("#tbl_validater tbody").empty();
             $.each(response.model, function (index, elementValue) {
-                html += "<tr><td>" + elementValue.N + "</td><td>" + elementValue.NAME + "</td><td>" + elementValue.AGE + "</td> <td>" + elementValue.EMAIL + "</td><td>" + elementValue.MOBILE + "</td><td><input type = 'submit' value = 'Delete' onClick = 'deleteRegistration(" + elementValue.N_ID + ")'/> </td> <td> <input type = 'submit' value = 'Edit' onClick = 'Editdata(" + elementValue.N_ID + ")'/></td> </td></tr>";
+                html += "<tr><td>" + elementValue.N_ID + "</td><td>" + elementValue.NAME + "</td><td>" + elementValue.AGE + "</td> <td>" + elementValue.EMAIL + "</td><td>" + elementValue.MOBILE + "</td><td><input type = 'submit' value = 'Delete' onClick = 'deleteRegistration(" + elementValue.N_ID + ")'/> </td> <td> <input type = 'submit' value = 'Edit' onClick = 'Editdata(" + elementValue.N_ID + ")'/></td> </td></tr>";
 
             });
             $("#tbl_validater").append(html);
@@ -49,18 +64,31 @@ var getMainCategoryList = function () {
     })
 }
 var deleteRegistration = function (ID) {
-    var model = { ID : ID };
-    $.ajax({
-        url: "/validation/deletevalidation",
-        method: "post",
-        data: JSON.stringify(model),
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        async: false,
-        success: function (response) {
-            alert("Record Deleted Successfully ....");
+    var model = { ID: ID };
+    $.confirm({
+        title: 'warnning',
+        buttom: {
+            confirm: function () {
+                $.ajax({
+                    url: "/validation/deletevalidation",
+                    method: "post",
+                    data: JSON.stringify(model),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (response) {
+                        $.alert({
+                            title: 'alter',
+                            content: "deleted",
+                            type :'red'
+                        })
+                    }
+                });
+            }
         }
     });
+    
+   
 }
 var Editdata = function (id) {
 

@@ -1,4 +1,5 @@
-﻿
+﻿const { type } = require("jquery");
+
 
 $(document).ready(function () {
     //alert("Category added Sucessfully");
@@ -43,6 +44,7 @@ var savemvcdemo = function () {
         NAME: NAME, MOBILE_NO: MOBILE_NO, EMAIL: EMAIL, ID:ID
     };
     $.ajax({
+       
         url: "/mvcdemo/Savemvcdemo",
         method: "post",
         data: JSON.stringify(model),
@@ -50,12 +52,14 @@ var savemvcdemo = function () {
         datatype: "json",
 
         success: function (response) {
+            console.log(response),
             alert(response.Message);
             getMainCategoryList();
+            ClearData();
            
         }
     });
-    ClearData();
+  
 
 }
 

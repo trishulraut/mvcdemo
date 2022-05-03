@@ -5,15 +5,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using mvcdemo.Models;
+using mvcdemo.Data;
 
 namespace mvcdemo.Controllers
 {
     public class APIDemoController : ApiController
     {
         // GET: api/APIDemo
-        public IEnumerable<mvcdemoModel> Get()
+        public IEnumerable<MVCdemoModel> Get()
         {
-            var model = new mvcdemoModel().GetMvcdemos();
+            var model = new MVCdemoModel().GetMvcdemos();
             return model;
         }
 
@@ -24,18 +25,25 @@ namespace mvcdemo.Controllers
         }
 
         // POST: api/APIDemo
-        public void Post([FromBody]string value)
+        public string Post(MVCdemoModel model)
         {
+            var messsage = new MVCdemoModel().Savemvcdemo(model);
+            return messsage;
         }
 
         // PUT: api/APIDemo/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int ID, MVCdemoModel model)
         {
+
+            var messages = new MVCdemoModel().EditData(ID);
+            return messages;
         }
 
         // DELETE: api/APIDemo/5
-        public void Delete(int id)
+        public string Delete(int ID)
         {
+            var deletedata = new MVCdemoModel().deletemvc(ID);
+          return deletedata;
         }
     }
 }

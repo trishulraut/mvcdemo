@@ -51,6 +51,37 @@ warning 6002: The table/view 'mvcdemo.dbo.ChartData' does not have a primary key
           <Property Name="MOBILE" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mvcdemo.dbo.userlogin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="userlogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="AddNewStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="MOBILE_NO" Type="nvarchar" Mode="In" />
+          <Parameter Name="EMAIL" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StdId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetStudentDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateStudentDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StdId" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_GetCustomerSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchString" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_GetSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchString" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="mvcdemoModelStoreContainer">
           <EntitySet Name="tbl_forsearch" EntityType="Self.tbl_forsearch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_IMG" EntityType="Self.TBL_IMG" Schema="dbo" store:Type="Tables" />
@@ -62,6 +93,13 @@ warning 6002: The table/view 'mvcdemo.dbo.ChartData' does not have a primary key
     [ChartData].[Month] AS [Month], 
     [ChartData].[Temperature] AS [Temperature]
     FROM [dbo].[ChartData] AS [ChartData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="userlogin" EntityType="Self.userlogin" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [userlogin].[Id] AS [Id], 
+    [userlogin].[username] AS [username], 
+    [userlogin].[password] AS [password]
+    FROM [dbo].[userlogin] AS [userlogin]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -101,6 +139,28 @@ warning 6002: The table/view 'mvcdemo.dbo.ChartData' does not have a primary key
           <EntitySet Name="tbl_validater" EntityType="Self.tbl_validater" />
           <EntitySet Name="tbl_forsearch" EntityType="mvcdemoModel.tbl_forsearch" />
           <EntitySet Name="ChartDatas" EntityType="mvcdemoModel.ChartData" />
+          <EntitySet Name="userlogins" EntityType="mvcdemoModel.userlogin" />
+          <FunctionImport Name="AddNewStudent">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="MOBILE_NO" Mode="In" Type="String" />
+            <Parameter Name="EMAIL" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteStudent">
+            <Parameter Name="StdId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetStudentDetails" />
+          <FunctionImport Name="UpdateStudentDetails">
+            <Parameter Name="StdId" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetCustomerSearch" ReturnType="Collection(mvcdemoModel.usp_GetCustomerSearch_Result)">
+            <Parameter Name="SearchString" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetSearch" ReturnType="Collection(mvcdemoModel.usp_GetSearch_Result)">
+            <Parameter Name="SearchString" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tbl_forsearch">
           <Key>
@@ -119,6 +179,26 @@ warning 6002: The table/view 'mvcdemo.dbo.ChartData' does not have a primary key
           <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Temperature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="userlogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="usp_GetCustomerSearch_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MOBILE_NO" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="usp_GetSearch_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MOBILE_NO" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -174,6 +254,39 @@ warning 6002: The table/view 'mvcdemo.dbo.ChartData' does not have a primary key
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="userlogins">
+            <EntityTypeMapping TypeName="mvcdemoModel.userlogin">
+              <MappingFragment StoreEntitySet="userlogin">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddNewStudent" FunctionName="mvcdemoModel.Store.AddNewStudent" />
+          <FunctionImportMapping FunctionImportName="DeleteStudent" FunctionName="mvcdemoModel.Store.DeleteStudent" />
+          <FunctionImportMapping FunctionImportName="GetStudentDetails" FunctionName="mvcdemoModel.Store.GetStudentDetails" />
+          <FunctionImportMapping FunctionImportName="UpdateStudentDetails" FunctionName="mvcdemoModel.Store.UpdateStudentDetails" />
+          <FunctionImportMapping FunctionImportName="usp_GetCustomerSearch" FunctionName="mvcdemoModel.Store.usp_GetCustomerSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mvcdemoModel.usp_GetCustomerSearch_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MOBILE_NO" ColumnName="MOBILE_NO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetSearch" FunctionName="mvcdemoModel.Store.usp_GetSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mvcdemoModel.usp_GetSearch_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MOBILE_NO" ColumnName="MOBILE_NO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

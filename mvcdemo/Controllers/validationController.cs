@@ -72,7 +72,25 @@ namespace mvcdemo.Controllers
             }
         }
 
+        public ActionResult GetMVCListRazor()
+        {
+            try
 
+            {
+                var model = new validationModel().Getvalidet();
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View(ex.Message);
+            }
+
+        }
+
+        public ActionResult create()
+        { 
+        return View();
+        }
 
 
     }

@@ -16,6 +16,10 @@ namespace mvcdemo.Controllers
             return View();
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
         public ActionResult search()
         {
             return View();
@@ -30,15 +34,18 @@ namespace mvcdemo.Controllers
             return View();
         }
 
+        public ActionResult razorindex()
+        {
+            return View();
+        }
 
 
-
-        public ActionResult Savemvcdemo(mvcdemoModel model)
+        public ActionResult Savemvcdemo(MVCdemoModel model)
 
         {
             try
             {
-                return Json(new { Message = (new mvcdemoModel().Savemvcdemo(model)) }, JsonRequestBehavior.AllowGet);
+                return Json(new { Message = (new MVCdemoModel().Savemvcdemo(model)) }, JsonRequestBehavior.AllowGet);
             }
 
             catch (Exception Ex)
@@ -53,7 +60,7 @@ namespace mvcdemo.Controllers
         {
             try
             {
-                return Json(new { model = (new mvcdemoModel().GetMvcdemos()) }, JsonRequestBehavior.AllowGet);
+                return Json(new { model = (new MVCdemoModel().GetMvcdemos()) }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception Ex)
             {
@@ -61,13 +68,26 @@ namespace mvcdemo.Controllers
             }
         }
 
+        public ActionResult GetMVCListRazor()
+        {
+            try
 
+            {
+                var model = new MVCdemoModel().GetMvcdemos();
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View(ex.Message);
+            }
+
+        }
 
         public ActionResult deletemvc(int Id)
         {
             try
             {
-                return Json(new { model = (new mvcdemoModel().deletemvc(Id)) }, JsonRequestBehavior.AllowGet);
+                return Json(new { model = (new MVCdemoModel().deletemvc(Id)) }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception Ex)
             {
@@ -82,7 +102,7 @@ namespace mvcdemo.Controllers
 
             try
             {
-                return Json(new { model = (new mvcdemoModel().EditData(ID)) }, JsonRequestBehavior.AllowGet);
+                return Json(new { model = (new MVCdemoModel().EditData(ID)) }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception Ex)
             {
@@ -95,7 +115,7 @@ namespace mvcdemo.Controllers
         {
             try
             {
-                return Json(new { model = (new mvcdemoModel().GetRegistrationList(CompanyName)) }, JsonRequestBehavior.AllowGet);
+                return Json(new { model = (new MVCdemoModel().GetRegistrationList(CompanyName)) }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -104,7 +124,7 @@ namespace mvcdemo.Controllers
 
         }
 
-
+       
 
 
 

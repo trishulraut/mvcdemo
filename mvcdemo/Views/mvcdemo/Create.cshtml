@@ -1,0 +1,81 @@
+﻿@model mvcdemo.Models.MVCdemoModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.TextBoxFor(m => m.NAME)
+<script src="~/Content/Pages/jquery-1.11.1.min.js"></script>
+<script src="~/Content/Pages/mvcdemo.js"></script>
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>MVCdemoModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MOBILE_NO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MOBILE_NO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MOBILE_NO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" onclick="savemvcdemo()" />
+            </div>
+        </div>
+    </div>
+}
+@*@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "Exemplo1",
+        Value = "Exemplo1"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Exemplo2",
+        Value = "Exemplo2",
+        Selected = true
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Exemplo3",
+        Value = "Exemplo3"
+    });
+}
+@Html.Password("enter passwd")
+@Html.TextBox("email")
+
+    Html.CheckBox()
+
+@Html.DropDownListFor(model => model.NAME, listItems, "-- Select Status --")
+@Html.*@
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

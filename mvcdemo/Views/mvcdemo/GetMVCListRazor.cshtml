@@ -1,0 +1,67 @@
+﻿@model IEnumerable<mvcdemo.Models.MVCdemoModel>
+
+<h1>Trishul Razor Demo</h1>
+<h2>@DateTime.Now.ToShortDateString()</h2>
+<h2>@DateTime.Now.ToShortTimeString()</h2>
+
+@{
+    var date = DateTime.Now.ToShortDateString();
+    var message = "Hello World";
+}
+<h2>Today's date is: @date </h2>
+<h3>@message</h3>
+<text
+      @{
+    var date1 = DateTime.Now.ToShortDateString();
+    string message1 ="Hello Trishul!";
+    <text>Today's date is:</text> @date1
+    <br />
+    @message1
+}
+    </text>
+
+@{
+    ViewBag.Title = "GetMVCListRazor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetMVCListRazor</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MOBILE_NO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MOBILE_NO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMAIL)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -12,6 +12,8 @@ namespace mvcdemo.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class mvcdemoEntities : DbContext
     {
@@ -30,7 +32,76 @@ namespace mvcdemo.Data
         public virtual DbSet<tbl_validater> tbl_validater { get; set; }
         public virtual DbSet<tbl_forsearch> tbl_forsearch { get; set; }
         public virtual DbSet<ChartData> ChartDatas { get; set; }
-
+        public virtual DbSet<userlogin> userlogins { get; set; }
     
+        public virtual int AddNewStudent(string name, string mOBILE_NO, string eMAIL)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var mOBILE_NOParameter = mOBILE_NO != null ?
+                new ObjectParameter("MOBILE_NO", mOBILE_NO) :
+                new ObjectParameter("MOBILE_NO", typeof(string));
+    
+            var eMAILParameter = eMAIL != null ?
+                new ObjectParameter("EMAIL", eMAIL) :
+                new ObjectParameter("EMAIL", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddNewStudent", nameParameter, mOBILE_NOParameter, eMAILParameter);
+        }
+    
+        public virtual int DeleteStudent(Nullable<int> stdId)
+        {
+            var stdIdParameter = stdId.HasValue ?
+                new ObjectParameter("StdId", stdId) :
+                new ObjectParameter("StdId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteStudent", stdIdParameter);
+        }
+    
+        public virtual int GetStudentDetails()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetStudentDetails");
+        }
+    
+        public virtual int UpdateStudentDetails(Nullable<int> stdId, string name, string city, string address)
+        {
+            var stdIdParameter = stdId.HasValue ?
+                new ObjectParameter("StdId", stdId) :
+                new ObjectParameter("StdId", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("Address", address) :
+                new ObjectParameter("Address", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateStudentDetails", stdIdParameter, nameParameter, cityParameter, addressParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetCustomerSearch_Result> usp_GetCustomerSearch(string searchString)
+        {
+            var searchStringParameter = searchString != null ?
+                new ObjectParameter("SearchString", searchString) :
+                new ObjectParameter("SearchString", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetCustomerSearch_Result>("usp_GetCustomerSearch", searchStringParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetSearch_Result> usp_GetSearch(string searchString)
+        {
+            var searchStringParameter = searchString != null ?
+                new ObjectParameter("SearchString", searchString) :
+                new ObjectParameter("SearchString", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetSearch_Result>("usp_GetSearch", searchStringParameter);
+        }
     }
 }

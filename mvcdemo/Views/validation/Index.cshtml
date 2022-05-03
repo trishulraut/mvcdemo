@@ -4,48 +4,74 @@
 }
 <script src="~/Content/Pages/jquery-1.11.1.min.js"></script>
 <script src="~/Content/Pages/validation.js"></script>
+<script src="~/Content/jquery-confirm-master/js/jquery-confirm.js"></script>
+<link href="~/Content/jquery-confirm-master/css/jquery-confirm.css" rel="stylesheet" />
+<link href="~/Content/jQuery-Multiple-Select-Plugin-For-Bootstrap-Bootstrap-Multiselect/dist/css/bootstrap-multiselect.min.css" rel="stylesheet" />
+<script src="~/Content/jQuery-Multiple-Select-Plugin-For-Bootstrap-Bootstrap-Multiselect/dist/js/bootstrap-multiselect.js"></script>
+<link href="~/Content/jQuery-Multiple-Select-Plugin-For-Bootstrap-Bootstrap-Multiselect/dist/css/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="~/Content/jQuery-Multiple-Select-Plugin-For-Bootstrap-Bootstrap-Multiselect/dist/js/bootstrap-multiselect.min.js"></script>
 <h2>VALIDATION</h2>
 <br />
 
-    @*<label id="lblvid"></label>*@
-    <input type="text" id="lblvid" />
-    <br />
-    <label>NAME</label>
-    <br />
-    <input type="text" id="txtname" />
-    <br />
-    <label>AGE</label>
-    <br />
-    <input type="text" id="txtage" />
-    <br />
-    <label>MOBILE NO</label>
-    <br />
-    <input type="text" id="txtmob" />
-    <br />
-    <label>EMAIL ID</label>
-    <br />
-    <input type="text" id="txtemail" />
+<label id="lblvid"></label>
+@*<input type="text" id="lblvid" />*@
+<br />
+<label>NAME</label>
+<br />
+<input type="text" id="txtname" />
+<br />
+<label>AGE</label>
+<br />
+<input type="text" id="txtage" />
+<br />
+<label>MOBILE NO</label>
+<br />
+<input type="text" id="txtmob" />
+<br />
+<label>EMAIL ID</label>
+<br />
+<input type="text" id="txtemail" />
 
-    <input type="button" id="btnsubmit" value="submit" onclick="savevalidation()" />
-    <input type="button" id="btnclear" class="btn-lg btn-danger" value="clear" onclick="ClearData()" />
-    <button type="button" id="printButton" class="btn btn-danger" onclick="printDiv('didID')">Print Invoice</button>
-    <div id="didID">
+<input type="button" id="btnsubmit" value="submit" onclick="savevalidation()" />
+<input type="button" id="btnclear" class="btn-lg btn-danger" value="clear" onclick="ClearData()" />
+<button type="button" id="printButton" class="btn btn-danger" onclick="myApp.printDiv()">Print Invoice</button>
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 
-        <table id="tbl_validater" border="1">
-            <thead>
-            <th>N_ID</th>
-            <th>NAME</th>
-            <th>AGE</th>
-            <th>EMAIL</th>
-            <th>MOBILE_NO</th>
-            <th></th>
+<select id="demo" multiple="multiple">
+    
+    <option value="Javascript">Javascript</option>
+    
+    <option value="Python">Python</option>
+    
+    <option value="LISP">LISP</option>
+    
+    <option value="C++">C++</option>
+    
+    <option value="jQuery">jQuery</option>
+    
+    <option value="Ruby">Ruby</option>
+    
+</select>
+
+<div id="didID" >
+    <DIV style="background-image: url('../../Content/piechar/KPI2.jpg');">
+
+    <table id="tbl_validater" border="1">
+        <thead>
+        <th>N_ID</th>
+        <th>NAME</th>
+        <th>AGE</th>
+        <th>EMAIL</th>
+        <th>MOBILE_NO</th>
+        <th></th>
 
 
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-<script language="javascript" type="text/javascript">
+        </thead>
+        <tbody></tbody>
+    </table>
+</DIV>
+</div>
+@*<script language="javascript" type="text/javascript">
     function printDiv(didID) {
 
         var divElements = document.getElementById(didID).innerHTML;
@@ -64,5 +90,34 @@
         recognition.start();
 
         document.body.innerHTML = oldPage;
+    }
+</script>*@
+@*<script type="text/javascript">
+    function printDiv(didID) {
+        var printContent = document.getElementById(elementId);
+        var windowUrl = 'about:blank';
+        var uniqueName = new Date();
+        var windowName = 'Print' + uniqueName.getTime();
+        var printWindow = window.open(windowUrl, windowName, 'left=50000,top=50000,width=0,height=0');
+
+        printWindow.document.write(printContent.innerHTML);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+    }
+</script>*@
+<script>
+    var myApp = new function () {
+        this.printDiv = function () {
+            // Store DIV contents in the variable.
+            var div = document.getElementById('didID');
+
+            // Create a window object.
+            var win = window.open('', '', 'height=700,width=700'); // Open the window. Its a popup window.
+            win.document.write(div.outerHTML);     // Write contents in the new window.
+            win.document.close();
+            win.print();       // Finally, print the contents.
+        }
     }
 </script>
