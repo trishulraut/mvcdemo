@@ -20,14 +20,14 @@ namespace mvcdemo.Controllers
         public ActionResult UserLogin(userlogin model)
         {
             mvcdemoEntities db = new mvcdemoEntities();
-            var user = db.userlogins.Where(m => m.Id == model.username && m.password ==
+            var user = db.userlogins.Where(m => m.Id == model.Id && m.password ==
               model.password).FirstOrDefault();
             if (ModelState.IsValid)
             {
                 if (user != null)
                 {
-                    Session["UserId"] = user.UserId.ToString();
-                    Session["FirstName"] = user.FirstName.ToString();
+                    Session["UserId"] = user.Id.ToString();
+                    Session["FirstName"] = user.username.ToString();
                     return RedirectToAction("UserDashBoard");
                 }
                 else
@@ -56,7 +56,5 @@ namespace mvcdemo.Controllers
             FormsAuthentication.SignOut();
             return View("..\\employeelogin\\Index");
         }
-    }
-}
     }
 }
