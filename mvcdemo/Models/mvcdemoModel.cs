@@ -21,6 +21,7 @@ namespace mvcdemo.Models
         public string MOBILE_NO { get; set; }
      
         public string EMAIL { get; set; }
+        public string date { get; set; }
 
         public string Savemvcdemo(MVCdemoModel model)
         {
@@ -65,12 +66,15 @@ namespace mvcdemo.Models
             {
                 foreach (var Category in mvcdemosd)
                 {
+
+                    string test = DateTime.Now.ToString("dd/MM/yyyy");
                     lstCategory.Add(new MVCdemoModel()
                     {
                         ID = Category.ID,
                         NAME = Category.NAME,
                         MOBILE_NO = Category.MOBILE_NO,
-                        EMAIL = Category.EMAIL
+                        EMAIL = Category.EMAIL,
+                        date= test
 
                     });
                 }

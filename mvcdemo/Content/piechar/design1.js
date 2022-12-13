@@ -143,7 +143,7 @@
             caption: { margin: 15, text: "", align: "left", verticalAlign: "bottom" }, plotOptions: {}, labels: { style: { position: "absolute", color: "#333333" } }, legend: {
                 enabled: !0, align: "center", alignColumns: !0, className: "highcharts-no-tooltip", layout: "horizontal", labelFormatter: function () { return this.name }, borderColor: "#999999", borderRadius: 0, navigation: { activeColor: "#003399", inactiveColor: "#cccccc" }, itemStyle: { color: "#333333", cursor: "pointer", fontSize: "12px", fontWeight: "bold", textOverflow: "ellipsis" }, itemHoverStyle: { color: "#000000" },
                 itemHiddenStyle: { color: "#cccccc" }, shadow: !1, itemCheckboxStyle: { position: "absolute", width: "13px", height: "13px" }, squareSymbol: !0, symbolPadding: 5, verticalAlign: "bottom", x: 0, y: 0, title: { style: { fontWeight: "bold" } }
-            }, loading: { labelStyle: { fontWeight: "bold", position: "relative", top: "45%" }, style: { position: "absolute", backgroundColor: "\", opacity: .5, textAlign: "center" } }, tooltip: {
+            }, loading: { labelStyle: { fontWeight: "bold", position: "relative", top: "45%" }, style: { position: "absolute", backgroundColor: "\", opacity: .5, textAlign: 'center' } }, tooltip: {
                 enabled: !0, animation: A.svg, borderRadius: 3, dateTimeLabelFormats: {
                     millisecond: "%A, %b %e, %H:%M:%S.%L", second: "%A, %b %e, %H:%M:%S",
                     minute: "%A, %b %e, %H:%M", hour: "%A, %b %e, %H:%M", day: "%A, %b %e, %Y", week: "Week from %A, %b %e, %Y", month: "%B %Y", year: "%Y"
@@ -155,7 +155,7 @@
                 u(!0, z, m); if (m.time || m.global) A.time ? A.time.update(u(z.global, z.time,
                     m.global, m.time)) : A.time = q; return z
             }
-        }; ""; return a
+            };  
     }); L(a, "Core/Animation/Fx.js", [a["Core/Color/Color.js"], a["Core/Globals.js"], a["Core/Utilities.js"]], function (a, t, A) {
         var u = a.parse, x = t.win, C = A.isNumber, I = A.objectEach; return function () {
             function a(a, m, h) { this.pos = NaN; this.options = m; this.elem = a; this.prop = h } a.prototype.dSetter = function () {

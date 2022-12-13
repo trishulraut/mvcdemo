@@ -186,6 +186,7 @@
     <Compile Include="Controllers\MVCAPIController.cs" />
     <Compile Include="Controllers\mvcdemo2Controller.cs" />
     <Compile Include="Controllers\mvcdemoController.cs" />
+    <Compile Include="Controllers\mvcdemoPraticaController.cs" />
     <Compile Include="Controllers\printController.cs" />
     <Compile Include="Controllers\searchbydtController.cs" />
     <Compile Include="Controllers\UesrLoginController.cs" />
@@ -195,6 +196,7 @@
     </Compile>
     <Compile Include="Models\ChartDataModel.cs" />
     <Compile Include="Models\demochart.cs" />
+    <Compile Include="Models\denoModel.cs" />
     <Compile Include="Models\EXCELModel.cs" />
     <Compile Include="Models\IMGModel.cs" />
     <Compile Include="Models\loginModel.cs" />
@@ -381,6 +383,7 @@
     <Content Include="Views\mvcdemo\razorindex.cshtml" />
     <Content Include="Views\mvcdemo\GetMVCListRazor.cshtml" />
     <Content Include="Views\mvcdemo\Create.cshtml" />
+    <Content Include="Views\mvcdemoPratica\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
