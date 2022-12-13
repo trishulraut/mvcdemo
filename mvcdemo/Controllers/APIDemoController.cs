@@ -32,12 +32,12 @@ namespace mvcdemo.Controllers
         }
 
         // PUT: api/APIDemo/5
-        public MVCdemoModel Put(int ID, MVCdemoModel model)
-        {
+        //public void Put(int ID, MVCdemoModel model)
+        //{
 
-            var messages = new MVCdemoModel().EditData(ID);
-            return messages;
-        }
+        //    var messages = new MVCdemoModel().EditData(ID);
+        //    return messages;
+        //}
 
         // DELETE: api/APIDemo/5
         public string Delete(int ID)
