@@ -331,6 +331,7 @@
     <Content Include="Content\jQuery-Multiple-Select-Plugin-For-Bootstrap-Bootstrap-Multiselect\package.json" />
     <Content Include="Content\jQuery-Multiple-Select-Plugin-For-Bootstrap-Bootstrap-Multiselect\README.md" />
     <Content Include="Content\jQuery-Multiple-Select-Plugin-For-Bootstrap-Bootstrap-Multiselect\tests\lib\MIT.LICENSE" />
+    <Content Include="Content\angular.rar" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
