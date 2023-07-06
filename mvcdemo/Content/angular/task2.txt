@@ -1,0 +1,82 @@
+<!DOCTYPE html> 
+<html> 
+<script src= 
+
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"> 
+</script> 
+
+<h1 style="color: green"> 
+
+    GeeksforGeeks 
+</h1> 
+<body> 
+
+  
+<script> 
+
+var app = angular.module("Subjects", []);  
+
+app.controller("my_Ctrl", function($scope) { 
+
+    $scope.name =  ["English", "Maths", "Economics"]; 
+
+      
+
+     $scope.addingNewSubject = function () { 
+
+        $scope.errortext = ""; 
+
+        if (!$scope.addSubject) {return;}         
+
+        if ($scope.name.indexOf($scope.addSubject) == -1) { 
+
+            $scope.name.push($scope.addSubject); 
+
+        } else { 
+
+            $scope.errortext =  
+
+               "This subject is already in the list."; 
+
+        } 
+
+    } 
+
+      
+
+     $scope.remove = function (x) { 
+
+         $scope.errortext = "";  
+
+        $scope.name.splice(x, 1); 
+
+    } 
+}); 
+</script> 
+
+  
+
+<div ng-app="Subjects" ng-controller="my_Ctrl"> 
+
+  <ul> 
+
+   <li ng-repeat="x in name"> 
+
+      {{x}}<span ng-click="remove($index)">×</span> 
+
+    </li> 
+
+  </ul> 
+
+  <input ng-model="addSubject"> 
+
+  <button ng-click="addingNewSubject()">Add</button> 
+
+    
+
+ <p>{{errortext}}</p> 
+</div> 
+
+<p>Use cross icon for removing subjects.</p> 
+</body> 
+</html>
