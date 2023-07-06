@@ -12,7 +12,8 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+mvcdemo.Data\App.Config
+mvcdemo\Web.config
 # Mono auto generated files
 mono_crash.*
 
