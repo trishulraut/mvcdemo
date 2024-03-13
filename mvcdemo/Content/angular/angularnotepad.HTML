@@ -1,0 +1,54 @@
+    
+<html>
+
+<script src="angular.min.js"></script>
+
+
+
+<body>
+
+    <div ng-app>
+        <pre>
+        <P>First Name: <input type="text" ng-model="Fname" /></P>
+        </br>
+        <p>Last Name: <input type="text" ng-model="Lname" /></p>
+        </br>
+        Full Name :{{Fname+" "+Lname}}
+
+<P>numder1: <input type="number" ng-model="n1" /></P>
+<P>numder1: <input type="number" ng-model="n2" /></P>
+
+</br>
+
+Total :{{n1+n2}}
+</br>
+Sub: {{n1-n2}}
+</br>
+multiplication: {{n1*n2}}
+</br>
+Division:{{n1/n2}}
+
+
+</pre>
+    </div>
+
+
+
+
+<div ng-app="myApp" ng-controller="personCtrl">
+<p>The Name is {{lastname| lowercase}}</p>
+
+</div>
+<script>
+angular.module('myApp',[]).controller('personCtrl',function($scope){
+
+$scope.firtName="Trishul",
+$scope.lastname="Raut"
+});
+
+</script>
+
+
+</body>
+
+</html>
